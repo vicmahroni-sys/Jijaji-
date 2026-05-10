@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>जन्मदिन की शुभकामनाएं - जीजा जी</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff9a44, #fc6076);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow: hidden;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            width: 90%;
+            max-width: 400px;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+        .deity-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #ff9a44;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #d32f2f;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            font-weight: 500;
+            margin-bottom: 30px;
+            min-height: 80px;
+        }
+        .btn {
+            background: #d32f2f;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(211, 47, 47, 0.4);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .btn:hover {
+            background: #b71c1c;
+            transform: translateY(-2px);
+        }
+        /* Fade animation */
+        .fade-out {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        .fade-in {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card" id="greetingCard">
+        <img id="cardImage" class="deity-img" src="https://images.unsplash.com/photo-1590623253386-3536fc61fc93?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400&q=80" alt="Shree Ganesh">
+        <h2 id="cardTitle">श्री गणेश का आशीर्वाद</h2>
+        <p id="cardText">विघ्नहर्ता भगवान गणेश आपके जीवन के सभी कष्ट दूर करें और आपके हर कार्य में सफलता प्रदान करें।</p>
+        <button class="btn" id="nextBtn" onclick="nextSlide()">आगे बढ़ें ➔</button>
+    </div>
+
+    <script>
+        const slides = [
+            {
+                title: "श्री गणेश का आशीर्वाद",
+                img: "https://images.unsplash.com/photo-1590623253386-3536fc61fc93?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400&q=80", // गणेश जी की डमी फोटो
+                text: "विघ्नहर्ता भगवान गणेश आपके जीवन के सभी कष्ट दूर करें और आपके हर कार्य में सफलता प्रदान करें।"
+            },
+            {
+                title: "माँ लक्ष्मी का आशीर्वाद",
+                img: "https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400&q=80", // दीयों की डमी फोटो (लक्ष्मी प्रतीक)
+                text: "धन की देवी माँ लक्ष्मी आपको अपार सुख, संपत्ति, यश, वैभव और धन-संपदा प्रदान करें।"
+            },
+            {
+                title: "महादेव का आशीर्वाद",
+                img: "https://images.unsplash.com/photo-1602127271813-f9ec7b20d3f2?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400&q=80", // शिव जी की डमी फोटो
+                text: "महाकाल की कृपा से आप सदैव निरोगी रहें और आपको कभी कोई रोग न हो। आप दीर्घायु हों।"
+            },
+            {
+                title: "जन्मदिन की हार्दिक शुभकामनाएं!",
+                img: "https://via.placeholder.com/400x400.png?text=Your+Photo+Here", // यहाँ आपको अपनी वह फोटो लगानी है जो मैंने ऊपर बनाई है
+                text: "जीजा जी, आपका आशीर्वाद हम पर हमेशा यूं ही बना रहे। फूफा और भतीजे का यह प्यारा सा रिश्ता हमेशा ऐसे ही मुस्कुराता रहे! ❤️"
+            }
+        ];
+
+        let currentSlide = 0;
+
+        function nextSlide() {
+            currentSlide++;
+            const card = document.getElementById('greetingCard');
+            
+            // Fade out effect
+            card.classList.add('fade-out');
+            
+            setTimeout(() => {
+                if (currentSlide < slides.length) {
+                    document.getElementById('cardTitle').innerText = slides[currentSlide].title;
+                    document.getElementById('cardText').innerText = slides[currentSlide].text;
+                    document.getElementById('cardImage').src = slides[currentSlide].img;
+                    
+                    if(currentSlide === slides.length - 1) {
+                        document.getElementById('nextBtn').style.display = 'none'; // आखिरी स्लाइड पर बटन छिपा दें
+                    }
+                }
+                // Fade in effect
+                card.classList.remove('fade-out');
+            }, 500); // 500ms का एनीमेशन समय
+        }
+    </script>
+</body>
+</html>
